@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Chat-App</string>
+    <string name="chat_app">Chat App</string>
+    <string name="add_room_title">Add Room</string>
+    <string name="sports">Sports</string>
+    <string name="Music">Music</string>
+    <string name="movies">Movies</string>
+
+    <array name="room_categories">
+        <item>Sports</item>
+        <item>Movies</item>
+        <item>Music</item>
+    </array>
+</resources>
