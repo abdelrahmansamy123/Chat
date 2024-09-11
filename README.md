@@ -22,7 +22,6 @@ This is a demo application built with the goal to create a fun and challenging a
 
 - **Chats**: 
   - List of chats
-  - Online status
   - Updates on changes
 
 - **Notifications**: 
@@ -33,8 +32,6 @@ This is a demo application built with the goal to create a fun and challenging a
   - List of users
 
 - **Settings**: 
-  - Change profile image
-  - Change status
   - Logout
 
 - **Chat**: 
@@ -42,10 +39,6 @@ This is a demo application built with the goal to create a fun and challenging a
   - Online status indicator
   - Custom toolbar
   - Updates on changes
-
-- **Profile**: 
-  - Add/remove friends
-  - Accept/decline friend requests
 
 - **General**: 
   - Auto login
