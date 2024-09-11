@@ -11,4 +11,3 @@ See below for more information.
 - [Firestore](https://firebase.google.com/docs/firestore)
 - [Firebase Authentication](https://firebase.google.com/docs/auth)
 - [Firebase Realtime Database](https://firebase.google.com/docs/database)
-- 
