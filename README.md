@@ -63,7 +63,7 @@ This is a demo application built with the goal to create a fun and challenging a
 
 ### Create Rooom 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/491d73d5-e5f5-49e4-ac63-65b0961d040d" width="250" />
+  <img src="https://github.com/user-attachments/assets/491d73d5-e5f5-49e4-ac63-65b0961d040d" width="400" />
 </p>
 
 ### Rooom 
