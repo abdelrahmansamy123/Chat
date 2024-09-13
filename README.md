@@ -66,7 +66,9 @@ This is a demo application built with the goal to create a fun and challenging a
   <img src="https://github.com/user-attachments/assets/491d73d5-e5f5-49e4-ac63-65b0961d040d" width="400" />
 </p>
 
-### Rooom 
+### Room 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/288483e0-15fa-4c87-8997-e458be18fff3" width="250" />
+ <img src="https://github.com/user-attachments/assets/1efe58be-9841-4f6a-b808-b48ad80c960e" width="250" />
+ <img src="https://github.com/user-attachments/assets/7e8877c7-2536-4433-bd2c-69660c2a1958" width="250" />
+ <img src="https://github.com/user-attachments/assets/6f6e83d6-b79c-4a6a-a628-427d90231190" width="250" />
 </p>
