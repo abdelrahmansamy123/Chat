@@ -45,3 +45,5 @@ This is a demo application built with the goal to create a fun and challenging a
   - Bottom navigation
   - Error messages with snackbar
   - Progress bar
+
+## Screenshots
