@@ -8,7 +8,7 @@ import com.route.chat_app.database.FireStoreUtils
 import com.route.chat_app.database.models.User
 import com.route.chat_app.isValidEmail
 
-class RegisterViewModel: BaseViewModel<RegisterNavigator>() {
+class RegisterViewModel : BaseViewModel<RegisterNavigator>() {
     val userName = ObservableField<String>()
     val userNameError = ObservableField<String?>()
     val email = ObservableField<String>()
@@ -20,80 +20,83 @@ class RegisterViewModel: BaseViewModel<RegisterNavigator>() {
 
 
     val auth = FirebaseAuth.getInstance()
-    fun register(){
-        if (!validForm())return
+    fun register() {
+        if (!validForm()) return
         navigator?.showLoading("Loading...")
         auth.createUserWithEmailAndPassword(
             email.get()!!,
-            password.get()!!)
-            .addOnCompleteListener {task->
-                if (task.isSuccessful){
+            password.get()!!
+        )
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     insertUserToDataBase(task.result.user?.uid!!)
-                }else{
+                } else {
                     navigator?.hideDialoge()
-                    navigator?.showMessage(task.exception?.localizedMessage?:"")
+                    navigator?.showMessage(task.exception?.localizedMessage ?: "")
                 }
             }
     }
-    fun insertUserToDataBase(uid: String){
+
+    fun insertUserToDataBase(uid: String) {
         val user = User(
             id = uid,
             userName = userName.get(),
-            email =email.get()
+            email = email.get()
         )
         FireStoreUtils()
             .insertUserToDatabase(user)
-            .addOnCompleteListener { task->
+            .addOnCompleteListener { task ->
                 navigator?.hideDialoge()
-                if (task.isSuccessful){
-                 //   navigator?.showMessage("successful registration")
+                if (task.isSuccessful) {
+                    //   navigator?.showMessage("successful registration")
                     UserProvider.user = user
                     navigator?.goToHome()
-                }else{
-                    navigator?.showMessage(task.exception?.localizedMessage?:"")
+                } else {
+                    navigator?.showMessage(task.exception?.localizedMessage ?: "")
                 }
             }
     }
-    fun validForm():Boolean{
+
+    fun validForm(): Boolean {
         var isValid = true
-        if(userName.get().isNullOrBlank()){
+        if (userName.get().isNullOrBlank()) {
             userNameError.set("Please enter your name")
-            isValid =false
-        }else {
+            isValid = false
+        } else {
             isValid = true
             userNameError.set(null)
         }
-        if (email.get().isNullOrBlank()){
+        if (email.get().isNullOrBlank()) {
             emailError.set("please enter your email ")
             isValid = false
-        }else if (email.get()?.isValidEmail() == false){
+        } else if (email.get()?.isValidEmail() == false) {
             emailError.set("please enter a valid email")
             isValid = false
-        }else{
+        } else {
             isValid = true
             emailError.set(null)
         }
-        if(password.get().isNullOrBlank()){
+        if (password.get().isNullOrBlank()) {
             isValid = false
             passwordError.set("please enter password")
-        }else {
+        } else {
             isValid = true
             passwordError.set(null)
         }
-        if(passwordConfirm.get().isNullOrBlank()){
-            isValid =false
+        if (passwordConfirm.get().isNullOrBlank()) {
+            isValid = false
             passwordConfirmError.set("please re-enter password")
-        }else if (password.get()?.equals(passwordConfirm.get())==false){
+        } else if (password.get()?.equals(passwordConfirm.get()) == false) {
             passwordConfirmError.set("doesn't match")
-
-        }else {
+        } else {
             isValid = true
             passwordConfirmError.set(null)
         }
         return isValid
 
     }
-    fun gotoLogin(){
+
+    fun gotoLogin() {
         navigator?.gotoLogin()
     }
 }

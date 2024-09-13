@@ -12,7 +12,7 @@ import com.route.chat_app.ui.addRoom.AddRoomActivity
 import com.route.chat_app.ui.chat.ChatRoom
 
 
-class HomeActivity : BaseActivity<ActivityHomeBinding,HomeViewModel>(),Navigator {
+class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), Navigator {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding.vm = viewModel
@@ -24,7 +24,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding,HomeViewModel>(),Navigator
     }
 
     private fun subscribeToLiveData() {
-        viewModel.roomsLiveData.observe(this){
+        viewModel.roomsLiveData.observe(this) {
             adapter.changeData(it)
         }
     }
@@ -37,10 +37,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding,HomeViewModel>(),Navigator
     val adapter = RoomsAdapter()
     private fun initializeAdapter() {
         viewBinding.content.roomsRecycler.adapter = adapter
-        adapter.onItemClickListener = object : RoomsAdapter.OnItemClickListener{
+        adapter.onItemClickListener = object : RoomsAdapter.OnItemClickListener {
             override fun onItemClick(position: Int, room: Room) {
                 val intent = Intent(this@HomeActivity, ChatRoom::class.java)
-                intent.putExtra(Constants.EXTRA_ROOM,room)
+                intent.putExtra(Constants.EXTRA_ROOM, room)
                 startActivity(intent)
             }
         }
@@ -54,7 +54,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding,HomeViewModel>(),Navigator
     override fun getLayoutId(): Int = R.layout.activity_home
 
     override fun openAddRoom() {
-        val intent = Intent(this,AddRoomActivity::class.java)
+        val intent = Intent(this, AddRoomActivity::class.java)
         startActivity(intent)
     }
 }

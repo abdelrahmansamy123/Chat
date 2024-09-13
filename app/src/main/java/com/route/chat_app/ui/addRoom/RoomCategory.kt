@@ -3,28 +3,33 @@ package com.route.chat_app.ui.addRoom
 import com.route.chat_app.R
 
 data class RoomCategory(
-    val id : String,
-    val name : Int,
-    val imageId : Int) {
+    val id: String,
+    val name: Int,
+    val imageId: Int
+) {
     companion object {
-        fun getCategoryById(id: String?):RoomCategory{
-            return when(id){
-                "sports"->{
+        fun getCategoryById(id: String?): RoomCategory {
+            return when (id) {
+                "sports" -> {
                     RoomCategory("sports", R.string.sports, R.drawable.sports)
                 }
-                "movies"->{
+
+                "movies" -> {
                     RoomCategory("movies", R.string.movies, R.drawable.movies)
                 }
-                "music"->{
+
+                "music" -> {
                     RoomCategory("music", R.string.Music, R.drawable.music)
-                }else ->{
+                }
+
+                else -> {
                     RoomCategory("music", R.string.Music, R.drawable.music)
                 }
             }
 
 
-
         }
+
         fun getCategories() =
             listOf(
                 RoomCategory("sports", R.string.sports, R.drawable.sports),

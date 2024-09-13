@@ -11,7 +11,7 @@ import com.route.chat_app.ui.home.HomeActivity
 import com.route.chat_app.ui.register.RegisterActivity
 
 
-class LoginActivity : BaseActivity<ActivityLoginBinding,LoginViewModel>(),LoginNavigator {
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), LoginNavigator {
     override fun getLayoutId(): Int {
         return R.layout.activity_login
     }
@@ -28,13 +28,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding,LoginViewModel>(),LoginN
     }
 
     override fun gotoRegister() {
-        val intent = Intent(this , RegisterActivity::class.java)
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     override fun gotoHome() {
-        val intent = Intent(this , HomeActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }

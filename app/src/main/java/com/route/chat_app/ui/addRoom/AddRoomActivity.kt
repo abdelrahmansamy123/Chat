@@ -10,7 +10,7 @@ import com.route.chat_app.base.BaseActivity
 import com.route.chat_app.databinding.ActivityAddRoomBinding
 import com.route.chat_app.ui.addRoom.RoomCategory.Companion.getCategories
 
-class AddRoomActivity : BaseActivity<ActivityAddRoomBinding,AddRoomViewModel>(),Navigator{
+class AddRoomActivity : BaseActivity<ActivityAddRoomBinding, AddRoomViewModel>(), Navigator {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding.vm = viewModel
@@ -24,12 +24,13 @@ class AddRoomActivity : BaseActivity<ActivityAddRoomBinding,AddRoomViewModel>(),
     override fun back() {
         finish()
     }
+
     lateinit var adapter: CategoriesAdapter
-    fun initializeSpinner(){
+    fun initializeSpinner() {
         adapter = CategoriesAdapter(getCategories())
         viewBinding.categorySpinner.adapter = adapter
         viewBinding.categorySpinner.onItemSelectedListener =
-            object :AdapterView.OnItemSelectedListener{
+            object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parentViwe: AdapterView<*>?,
                     itemView: View?,
@@ -38,14 +39,14 @@ class AddRoomActivity : BaseActivity<ActivityAddRoomBinding,AddRoomViewModel>(),
                 ) {
                     val selectedCategory = adapter.getItem(position) as RoomCategory
                     viewModel.selectedCategory = selectedCategory
-                //  val selectedCategory =  getCategories().get(position)
+                    //  val selectedCategory =  getCategories().get(position)
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
 
                 }
 
-        }
+            }
     }
 
     override fun generateViewModel(): AddRoomViewModel {

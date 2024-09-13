@@ -14,34 +14,37 @@ class CategoriesAdapter(val items: List<RoomCategory>) : BaseAdapter() {
     override fun getItem(position: Int): Any {
         return items[position]
     }
+
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
+
     override fun getView(position: Int, view: View?, parent: ViewGroup?):
             View {
-        var currentItemView =view
+        var currentItemView = view
         var viewHolder: ViewHolder
-        if (currentItemView == null){
+        if (currentItemView == null) {
             // create view
-            val viewBinding:ItemRoomCategoryBinding=
-                 DataBindingUtil.inflate(
-                     LayoutInflater.from(parent?.context),
-                     R.layout.item_room_category,
-                     parent,false
-                 )
+            val viewBinding: ItemRoomCategoryBinding =
+                DataBindingUtil.inflate(
+                    LayoutInflater.from(parent?.context),
+                    R.layout.item_room_category,
+                    parent, false
+                )
             viewHolder = ViewHolder(viewBinding)
             currentItemView = viewHolder.viewBinding.root
             currentItemView.tag = viewHolder
-        }else{
+        } else {
             // already created
             viewHolder = currentItemView.tag as ViewHolder
         }
-            // data binding
-            // val item = getItem(position) as RoomCategory
+        // data binding
+        // val item = getItem(position) as RoomCategory
         val item = items[position]
         viewHolder.viewBinding.item = item
         viewHolder.viewBinding.invalidateAll()
         return currentItemView
     }
-    class ViewHolder(val viewBinding : ItemRoomCategoryBinding)
+
+    class ViewHolder(val viewBinding: ItemRoomCategoryBinding)
 }

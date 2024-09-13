@@ -6,23 +6,24 @@ import com.route.chat_app.base.BaseViewModel
 import com.route.chat_app.database.FireStoreUtils
 import com.route.chat_app.database.models.Room
 
-interface Navigator : BaseNavigator{
+interface Navigator : BaseNavigator {
 
-    fun openAddRoom(){
+    fun openAddRoom() {
 
     }
 }
 
-class HomeViewModel: BaseViewModel<Navigator>() {
+class HomeViewModel : BaseViewModel<Navigator>() {
     val roomsLiveData = MutableLiveData<List<Room>>()
-    fun addRoomAction(){
+    fun addRoomAction() {
         navigator?.openAddRoom()
     }
-    fun loadRooms(){
+
+    fun loadRooms() {
         FireStoreUtils()
             .getAllRooms()
             .addOnCompleteListener {
-                if (!it.isSuccessful){
+                if (!it.isSuccessful) {
                     navigator?.showMessage("error loading rooms")
                     return@addOnCompleteListener
                 }

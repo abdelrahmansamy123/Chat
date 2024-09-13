@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.route.chat_app.ui.chat.ChatRoomViewModel" />
@@ -14,18 +15,19 @@
         android:layout_height="match_parent"
         android:background="@drawable/background"
         tools:context=".ui.chat.ChatRoom">
-        <include layout="@layout/main_tool_bar"
+
+        <include
+            layout="@layout/main_tool_bar"
             app:showBack="@{true}"
-            app:toolBarTitle="@{vm.room.title}"
-            />
+            app:toolBarTitle="@{vm.room.title}" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            >
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/messages_recycler"
                 android:layout_width="match_parent"
@@ -48,8 +50,8 @@
                 android:text="@={vm.messageField}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/send_btn"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent" />
+
             <ImageView
                 android:id="@+id/send_btn"
                 android:layout_width="wrap_content"
@@ -59,8 +61,7 @@
                 android:padding="12dp"
                 android:src="@drawable/ic_send"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -10,15 +10,16 @@ import com.route.chat_app.ui.home.HomeActivity
 import com.route.chat_app.ui.login.LoginActivity
 
 class RegisterActivity :
-    BaseActivity<ActivityRegisterBinding,RegisterViewModel>(),
-    RegisterNavigator{
+    BaseActivity<ActivityRegisterBinding, RegisterViewModel>(),
+    RegisterNavigator {
     override fun getLayoutId(): Int {
         return R.layout.activity_register
     }
 
     override fun generateViewModel(): RegisterViewModel {
-        return ViewModelProvider(this).get(RegisterViewModel::class.java)
+        return ViewModelProvider(this)[RegisterViewModel::class.java]
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding.vm = viewModel
@@ -26,15 +27,20 @@ class RegisterActivity :
     }
 
     override fun goToHome() {
-        val intent =Intent(this,HomeActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     override fun gotoLogin() {
-        val intent =Intent(this,LoginActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
+
+    //abdu sami
+    //abdelrahmansamy123@gmail.com
+    //123123
+    //123123
 
 }

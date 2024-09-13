@@ -9,9 +9,10 @@ import com.route.chat_app.database.FireStoreUtils
 import com.route.chat_app.database.models.Message
 import com.route.chat_app.database.models.Room
 
-interface Navigator : BaseNavigator{
-
+interface Navigator : BaseNavigator {
+    fun back()
 }
+
 class ChatRoomViewModel : BaseViewModel<Navigator>() {
     var room: Room? = null
     val messageField = ObservableField<String>()
@@ -25,17 +26,17 @@ class ChatRoomViewModel : BaseViewModel<Navigator>() {
             roomId = room?.id,
             dateTime = Timestamp.now()
         )
-        FireStoreUtils().sendMessage(message)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    messageField.set("")
-                    return@addOnCompleteListener
-                }
-                navigator?.showMessage("error sending your message",
-                    posActionTitle = "try Again",
-                    posAction = {
-                        sendMessage()
-                    })
+        FireStoreUtils().sendMessage(message).addOnCompleteListener {
+            if (it.isSuccessful) {
+                messageField.set("")
+                return@addOnCompleteListener
             }
+            navigator?.showMessage("error sending your message",
+                posActionTitle = "try Again",
+                posAction = {
+                    sendMessage()
+                })
+
+        }
     }
 }

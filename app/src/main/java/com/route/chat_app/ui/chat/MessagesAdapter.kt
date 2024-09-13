@@ -10,64 +10,68 @@ import com.route.chat_app.database.models.Message
 import com.route.chat_app.databinding.ItemRecievedMessageBinding
 import com.route.chat_app.databinding.ItemSendMessageBinding
 
-enum class MessageType(val value:Int){
+enum class MessageType(val value: Int) {
     Received(1),
     Send(2)
 }
 
-class MessagesAdapter(var messages: MutableList<Message>)
-    :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MessagesAdapter(var messages: MutableList<Message>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun getItemViewType(position: Int): Int {
         val message = messages[position]
-        if (message.senderId == UserProvider.user?.id){
+        if (message.senderId == UserProvider.user?.id) {
             return MessageType.Send.value
         }
         return MessageType.Received.value
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-       if (viewType == MessageType.Send.value){
-        val viewBinding: ItemSendMessageBinding = DataBindingUtil
-            .inflate(LayoutInflater.from(parent.context),
-            R.layout.item_send_message,parent,false)
-           return SendMessageViewHolder(viewBinding)
-       }
+        if (viewType == MessageType.Send.value) {
+            val viewBinding: ItemSendMessageBinding = DataBindingUtil
+                .inflate(
+                    LayoutInflater.from(parent.context),
+                    R.layout.item_send_message, parent, false
+                )
+            return SendMessageViewHolder(viewBinding)
+        }
         val viewBinding: ItemRecievedMessageBinding = DataBindingUtil
-            .inflate(LayoutInflater.from(parent.context),
-                R.layout.item_recieved_message,parent,false)
+            .inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.item_recieved_message, parent, false
+            )
         return ReceivedMessageViewHolder(viewBinding)
 
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-       if (holder is SendMessageViewHolder){
+        if (holder is SendMessageViewHolder) {
             holder.bind(messages[position])
-       }
-        if (holder is ReceivedMessageViewHolder){
+        }
+        if (holder is ReceivedMessageViewHolder) {
             holder.bind(messages[position])
         }
     }
 
     override fun getItemCount(): Int = messages.size
 
-    fun addMessage(message : Message){
+    fun addMessage(message: Message) {
         messages.add(message)
         notifyItemInserted(messages.size)
     }
 
-    class SendMessageViewHolder(val viewBinding: ItemSendMessageBinding)
-        :RecyclerView.ViewHolder(viewBinding.root){
-            fun bind(message: Message){
-                viewBinding.message = message
-                viewBinding.invalidateAll()
-            }
+    class SendMessageViewHolder(val viewBinding: ItemSendMessageBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
+        fun bind(message: Message) {
+            viewBinding.message = message
+            viewBinding.invalidateAll()
+        }
     }
 
-    class ReceivedMessageViewHolder(val viewBinding: ItemRecievedMessageBinding)
-        :RecyclerView.ViewHolder(viewBinding.root){
-        fun bind(message: Message){
+    class ReceivedMessageViewHolder(val viewBinding: ItemRecievedMessageBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
+        fun bind(message: Message) {
             viewBinding.message = message
             viewBinding.invalidateAll()
         }

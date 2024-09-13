@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.route.chat_app.ui.home.HomeViewModel" />
@@ -19,18 +20,18 @@
         <include
             layout="@layout/main_tool_bar"
             app:showBack="@{false}"
-            app:toolBarTitle="@{@string/chat_app}"/>
+            app:toolBarTitle="@{@string/chat_app}" />
 
         <include
             android:id="@+id/content"
             layout="@layout/content_home" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:onClick="@{()->vm.addRoomAction()}"
-            app:srcCompat="@drawable/ic_add"
-            />
+            app:srcCompat="@drawable/ic_add" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

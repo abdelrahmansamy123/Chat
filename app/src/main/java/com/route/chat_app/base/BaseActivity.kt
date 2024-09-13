@@ -9,70 +9,69 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 
 
-
-abstract class BaseActivity<VB:ViewDataBinding,
-        VM:BaseViewModel<*>> : AppCompatActivity() ,BaseNavigator {
-    lateinit var viewBinding:VB
-    lateinit var viewModel:VM
+abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel<*>> : AppCompatActivity(),
+    BaseNavigator {
+    lateinit var viewBinding: VB
+    lateinit var viewModel: VM
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = DataBindingUtil.setContentView(this, getLayoutId())
-        viewModel  = generateViewModel()
+        viewModel = generateViewModel()
     }
-    abstract fun getLayoutId():Int
-    abstract fun generateViewModel():VM
-    var alertDialog: AlertDialog?=null
-    var progressDialog : ProgressDialog?=null
+
+    abstract fun getLayoutId(): Int
+    abstract fun generateViewModel(): VM
+    var alertDialog: AlertDialog? = null
+    var progressDialog: ProgressDialog? = null
     override fun showLoading(message: String) {
         progressDialog = ProgressDialog(this)
         progressDialog?.setMessage(message)
         progressDialog?.show()
     }
 
-    override fun showMessage(message: String,
-                             posActionTitle : String?,
-                             posAction : OnDialogClickListener?,
-                             negActionTitle: String?,
-                             negAction:OnDialogClickListener?)
-    {
-        val builder =
-            AlertDialog.Builder(this)
-                .setMessage(message);
-        if(posActionTitle!=null){
-            builder.setPositiveButton(posActionTitle) {
-                    dialogInterface, i ->
+    override fun showMessage(
+        message: String,
+        posActionTitle: String?,
+        posAction: OnDialogClickListener?,
+        negActionTitle: String?,
+        negAction: OnDialogClickListener?
+    ) {
+        val builder = AlertDialog.Builder(this).setMessage(message);
+        if (posActionTitle != null) {
+            builder.setPositiveButton(posActionTitle) { dialogInterface, i ->
                 dialogInterface.dismiss()
                 posAction?.onClick()
             }
         }
-        if(negActionTitle!=null){
-            builder.setNegativeButton(negActionTitle) {
-                    dialogInterface, i ->
+        if (negActionTitle != null) {
+            builder.setNegativeButton(negActionTitle) { dialogInterface, i ->
                 dialogInterface.dismiss()
                 negAction?.onClick()
             }
         }
-        alertDialog =  builder.show()
+        alertDialog = builder.show()
     }
 
     override fun hideDialoge() {
         alertDialog?.dismiss()
         progressDialog?.dismiss()
-        progressDialog=null
+        progressDialog = null
     }
 }
 
-interface BaseNavigator{
-    fun showLoading(message : String)
+interface BaseNavigator {
+    fun showLoading(message: String)
     fun hideDialoge()
-    fun showMessage(message: String,
-                    posActionTitle : String?=null,
-                    posAction : OnDialogClickListener?=null,
-                    negActionTitle: String?=null,
-                    negAction:OnDialogClickListener?=null,)
+    fun showMessage(
+        message: String,
+        posActionTitle: String? = null,
+        posAction: OnDialogClickListener? = null,
+        negActionTitle: String? = null,
+        negAction: OnDialogClickListener? = null,
+    )
 
 }
 
-open class BaseViewModel<N:BaseNavigator> : ViewModel(){
-    var navigator:N?=null
+open class BaseViewModel<N : BaseNavigator> : ViewModel() {
+    var navigator: N? = null
 }

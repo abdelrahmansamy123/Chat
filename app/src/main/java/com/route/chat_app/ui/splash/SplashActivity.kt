@@ -24,35 +24,37 @@ class SplashActivity : AppCompatActivity() {
         super.onStart()
         Handler(Looper.getMainLooper())
             .postDelayed({
-                         navigate()
+                navigate()
             }, 2000)
     }
 
-    fun navigate(){
+    fun navigate() {
         val auth = FirebaseAuth.getInstance()
-        if (auth.currentUser == null){
+        if (auth.currentUser == null) {
             gotoLogin()
             return
         }
         FireStoreUtils()
-            .getUserFromDatabase(auth.currentUser?.uid?:"")
+            .getUserFromDatabase(auth.currentUser?.uid ?: "")
             .addOnCompleteListener {
-                if (!it.isSuccessful){
+                if (!it.isSuccessful) {
                     gotoLogin()
                     return@addOnCompleteListener
                 }
-                val user =  it.result.toObject(User::class.java)
+                val user = it.result.toObject(User::class.java)
                 UserProvider.user = user
                 gotoHome()
             }
     }
-    fun gotoLogin(){
-        val intent =Intent(this,LoginActivity::class.java)
+
+    fun gotoLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
-    fun gotoHome(){
-        val intent =Intent(this,HomeActivity::class.java)
+
+    fun gotoHome() {
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }

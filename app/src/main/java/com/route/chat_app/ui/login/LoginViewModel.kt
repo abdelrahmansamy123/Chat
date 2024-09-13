@@ -7,7 +7,7 @@ import com.route.chat_app.base.BaseViewModel
 import com.route.chat_app.database.FireStoreUtils
 import com.route.chat_app.database.models.User
 
-class LoginViewModel: BaseViewModel<LoginNavigator>() {
+class LoginViewModel : BaseViewModel<LoginNavigator>() {
 
     val email = ObservableField<String>()
     val emailError = ObservableField<String?>()
@@ -16,61 +16,64 @@ class LoginViewModel: BaseViewModel<LoginNavigator>() {
     val auth = FirebaseAuth.getInstance()
 
 
-    fun login(){
-        if (!validForm())return
+    fun login() {
+        if (!validForm()) return
         navigator?.showLoading("Loading...")
         auth.signInWithEmailAndPassword(
             email.get()!!,
             password.get()!!
-        ).addOnCompleteListener{task->
+        ).addOnCompleteListener { task ->
 
-            if (task.isSuccessful){
-                getUserFromDatabase(task.result.user?.uid?:"")
-              //  navigator?.showMessage(task.result.user?.uid?:"")
+            if (task.isSuccessful) {
+                getUserFromDatabase(task.result.user?.uid ?: "")
+                //  navigator?.showMessage(task.result.user?.uid?:"")
                 return@addOnCompleteListener
             }
             navigator?.hideDialoge()
-            navigator?.showMessage(task.exception?.localizedMessage?:"")
+            navigator?.showMessage(task.exception?.localizedMessage ?: "")
         }
     }
-    fun getUserFromDatabase(uid:String){
+
+    fun getUserFromDatabase(uid: String) {
         FireStoreUtils()
             .getUserFromDatabase(uid)
             .addOnCompleteListener {
                 navigator?.hideDialoge()
-                if (it.isSuccessful){
+                if (it.isSuccessful) {
                     val user = it.result.toObject(User::class.java)
                     UserProvider.user = user
                     navigator?.gotoHome()
-                }else{
-                    navigator?.showMessage(it.exception?.localizedMessage?:"")
+                } else {
+                    navigator?.showMessage(it.exception?.localizedMessage ?: "")
 
                 }
 
 
             }
     }
-    fun validForm():Boolean{
-        var isValid = true;
-        if (email.get().isNullOrBlank()){
+
+    fun validForm(): Boolean {
+        var isValid = true
+        if (email.get().isNullOrBlank()) {
             emailError.set("please enter your email")
             isValid = false
-        }else{
+        } else {
             isValid = true
             emailError.set(null)
         }
-        if(password.get().isNullOrBlank()){
+        if (password.get().isNullOrBlank()) {
             isValid = false
             passwordError.set("please enter your password")
-        }else {
+        } else {
             isValid = true
             passwordError.set(null)
         }
 
-        return isValid;
+        return isValid
 
     }
-    fun gotoRegister(){
+
+    fun gotoRegister() {
         navigator?.gotoRegister()
     }
 }

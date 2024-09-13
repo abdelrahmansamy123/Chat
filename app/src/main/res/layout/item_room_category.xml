@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
+
+    <variable
             name="item"
             type="com.route.chat_app.ui.addRoom.RoomCategory" />
 
