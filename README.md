@@ -49,8 +49,7 @@ This is a demo application built with the goal to create a fun and challenging a
 ## Screenshots
 ### Splash | Login | Create Account
 <p align="center">
-  <img src="![splash_screen](https://github.com/user-attachments/assets/c01252f2-71e0-4d17-a7f8-edf2b381182d)
-" width="250" />
+  <img src="https://github.com/user-attachments/assets/c01252f2-71e0-4d17-a7f8-edf2b381182d" width="250" />
   <img src="![login_screen](https://github.com/user-attachments/assets/5e528b7b-23ee-4ad3-955c-ce3ac5e2f913)
 " width="250" />
   <img src="![register_screen](https://github.com/user-attachments/assets/543be4e2-8d35-4b3c-97c7-3a7024dca31f)
