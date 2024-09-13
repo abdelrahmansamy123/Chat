@@ -53,3 +53,10 @@ This is a demo application built with the goal to create a fun and challenging a
   <img src="https://github.com/user-attachments/assets/5e528b7b-23ee-4ad3-955c-ce3ac5e2f913" width="250" />
   <img src="https://github.com/user-attachments/assets/543be4e2-8d35-4b3c-97c7-3a7024dca31f" width="250" />
 </p>
+
+### Home | Search 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6d82fad1-1311-42c4-9769-5135624cfa88" width="250" />
+  <img src="https://github.com/user-attachments/assets/3b8c6bce-1488-4aa6-a3c1-07de48d7a8e9" width="250" />
+  <img src="https://github.com/user-attachments/assets/a3d855d5-58cf-4dcb-8913-abe967ccce65" width="250" />
+</p>
